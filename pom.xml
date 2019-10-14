@@ -7,6 +7,19 @@
   <name>metrichash</name>
   <url>http://maven.apache.org</url>
   <packaging>pom</packaging>
+  <build>
+      <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.2</version>
+        <configuration>
+          <source>1.11</source>
+          <target>1.11</target>
+        </configuration>
+      </plugin>
+  </plugins>
+  </build>  
   <modules>
   	<module>metrichash-nbi</module>
   	<module>metrichash.map</module>
