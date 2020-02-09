@@ -10,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -113,13 +114,41 @@ public class MapClient {
 	}
 
 	private void filter(long criteria) {
-	    Map<Long, String> aMap = getConcurrentHashMap().entrySet().parallelStream()
+	    Map<Long, String> aMap = getConcurrentHashMap()
+	    		.entrySet()
+	    		.parallelStream()
 	            .filter(x -> x.getKey().longValue() > criteria)
 	            .collect(Collectors
 	                .toMap(x -> x.getKey(), x -> x.getValue()));
 	    System.out.println("Filtered: " + aMap.size());
 	}
 
+	
+	
+	
+	public void test() {
+		// iterate over a fixed range of numerics
+		//https://www.deadcoderising.com/2015-05-19-java-8-replace-traditional-for-loops-with-intstreams/
+		// print a range of numbers
+		System.out.println("\nrange of numbers");
+		IntStream.range(1, 9).forEach(i -> System.out.print("," + i)); // 1,2,3,4,5,6,7,8,9
+		// Handle printing with whitespace in a method reference using mapToObj on the IntStream - not performant because of object creation
+		IntStream.range(1, 9).mapToObj(i -> "," + i).forEach(System.out::print); // 1,2,3,4,5,6,7,8,9
+		// filter for even numbers in parallel
+		System.out.println("\neven numbers in parallel");
+		IntStream.range(1, 9).parallel().filter(i -> i % 2 == 0).forEach(i -> System.out.print("," + i)); // 6,8,4,2
+		// compute squares
+		System.out.println("\nsquare numbers in parallel");
+		IntStream.range(1, 9).parallel().map(i -> i * i).forEach(i -> System.out.print("," + i)); // 6,8,4,2
+		System.out.println("\nsquare numbers in parallel");
+		IntStream.range(1, 9).parallel().map(i -> i * i).forEach(i -> System.out.print("," + i)); // 6,8,4,2
+		// hailstone collatz numbers
+		
+		//IntStream.range(1, 9).forEach(i -> System.out.println(i));
+		
+		//IntStream.iterate(1, i -> i + 1).filter(i -> i %2 == 0);
+	}
+	
 	public Map<Long, String> getConcurrentHashMap() {
 		return concurrentHashMap;
 	}
@@ -130,6 +159,7 @@ public class MapClient {
 	
 	public static void main(String[] args) {
 		MapClient client = new MapClient();
-		client.streamFromDump("../Dump20190225.sql");
+		//client.streamFromDump("../Dump20190225.sql");
+		client.test();
 	}
 }
