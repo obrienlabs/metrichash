@@ -3,8 +3,10 @@ package com.metrichash.map;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.StringTokenizer;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -123,10 +125,33 @@ public class MapClient {
 	    System.out.println("Filtered: " + aMap.size());
 	}
 
-	
+
+	private void testNull(Long val) {
+		Optional.ofNullable(val).ifPresent(x -> System.out.println(" not null"));
+		Optional.ofNullable(val).orElseGet(() -> 1L);
+	}
 	
 	
 	public void test() {
+		
+		List<Integer> ints = new ArrayList<>();
+		ints.add(Integer.valueOf(6));
+		ints.add(Integer.valueOf(5));
+		ints.add(Integer.valueOf(11));
+		ints.add(Integer.valueOf(2));
+		
+		// lowest number greater than 3 is 5
+		System.out.println(ints.stream().filter(i -> i.compareTo(3) > 0).sorted().findFirst().get());
+
+		Long val = null;
+		testNull(val);
+		testNull(1L);
+		
+		// array inside an array inside an array
+		
+		
+		
+		System.exit(1);
 		// iterate over a fixed range of numerics
 		//https://www.deadcoderising.com/2015-05-19-java-8-replace-traditional-for-loops-with-intstreams/
 		// print a range of numbers
@@ -163,3 +188,4 @@ public class MapClient {
 		client.test();
 	}
 }
+
