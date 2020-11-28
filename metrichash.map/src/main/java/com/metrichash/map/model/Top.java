@@ -1,4 +1,4 @@
-package com.metrichash.map;
+package com.metrichash.map.model;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 

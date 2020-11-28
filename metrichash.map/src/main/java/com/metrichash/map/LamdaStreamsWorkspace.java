@@ -5,6 +5,13 @@ import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
+import com.metrichash.map.model.Leaf;
+import com.metrichash.map.model.LeafImpl;
+import com.metrichash.map.model.Middle;
+import com.metrichash.map.model.MiddleImpl;
+import com.metrichash.map.model.Top;
+import com.metrichash.map.model.TopImpl;
+
 public class LamdaStreamsWorkspace {
 
 	
@@ -60,16 +67,18 @@ public class LamdaStreamsWorkspace {
 	
 	private void modifyLeafNodes(List<Top> roots) {
 		// change an attribute on the leaf nodes
-		//List<Top> filtered = 
-				roots
-				//.stream()
-				//.filter(x -> x.getId() > 0)
-				//.map(y -> y.getAttribute().toUpperCase())
-				.forEach(y -> y.setAttribute(y.getAttribute().toUpperCase()));
-		//		.collect(Collectors.toList());
-		roots.forEach(i -> System.out.println("," + i.getAttribute()));
+		roots
+			.forEach(y -> y.getMiddles()
+			.stream()
+			.forEach(z -> z.getLeafs()
+			.stream()
+			.forEach(x -> x.setAttribute(x.getAttribute().toUpperCase()))));
+		roots
+			.forEach(x -> x.getMiddles()
+			.stream()
+			.forEach(y -> y.getLeafs()
+			.forEach(i -> System.out.println(i.getId() + "," + i.getAttribute()))));
 	}
-	
 	
 	public void test() {
 		List<Top> roots = getModel();
