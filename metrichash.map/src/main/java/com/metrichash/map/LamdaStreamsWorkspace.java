@@ -67,15 +67,14 @@ public class LamdaStreamsWorkspace {
 	
 	private void modifyLeafNodes(List<Top> roots) {
 		// change an attribute on the leaf nodes
-		roots
+		roots.stream()
 			.forEach(y -> y.getMiddles()
-			.stream()
+			//.stream()
 			.forEach(z -> z.getLeafs()
-			.stream()
-			.forEach(x -> x.setAttribute(x.getAttribute().toUpperCase()))));
+			//.stream()
+			.forEach(x -> x.setAttribute(x.getAttribute().toLowerCase()))));
 		roots
 			.forEach(x -> x.getMiddles()
-			.stream()
 			.forEach(y -> y.getLeafs()
 			.forEach(i -> System.out.println(i.getId() + "," + i.getAttribute()))));
 	}

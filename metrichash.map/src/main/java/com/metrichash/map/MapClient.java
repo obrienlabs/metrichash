@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -147,9 +149,26 @@ public class MapClient {
 		testNull(val);
 		testNull(1L);
 		
+		
+		
 		// array inside an array inside an array
 		
+		// perform operations on multiple list streams using flatMap
+		List<String> first = Arrays.asList("5", "a", "3");
+		List<String> sec = Stream.of("1", "2").collect(Collectors.toList());		
 		
+		List<String> all = first.stream()
+				.map(w -> w.toUpperCase())
+				.sorted()
+				.collect(Collectors.toList());
+		//all.stream().forEach(i -> System.out.print(i));
+		
+		List<String> combined = Stream.of(first, sec)
+					.flatMap(List::stream)
+					.map(w -> w.toUpperCase())
+					.sorted()
+					.collect(Collectors.toList());
+		combined.stream().forEach(i -> System.out.print(i));
 		
 		System.exit(1);
 		// iterate over a fixed range of numerics
