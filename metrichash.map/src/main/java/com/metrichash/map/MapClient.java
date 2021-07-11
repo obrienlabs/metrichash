@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -33,12 +32,16 @@ public class MapClient {
 		if(null != line && line.length() > 4) {
 			// strip out header and footer
 			String replaced = line.substring(line.indexOf("(") + 1).replaceAll("\\),\\(", "|");
-			String replaced2 = replaced.substring(0, replaced.length() - 2);
-			//System.out.println(replaced2.substring(replaced2.length()-20, replaced2.length()));
-			aList = Stream.of(replaced2.split("\\|"))
+			// handle empty lines in updated exports per table
+			if(replaced.length() > 2) {
+				String replaced2 = replaced.substring(0, replaced.length() - 2);
+				//System.out.println(replaced2.substring(replaced2.length()-20, replaced2.length()));
+				aList = Stream.of(replaced2.split("\\|"))
 					.map(elem -> new String(elem))
 					.collect(Collectors.toList());
+			}
 		}
+		
 		return aList;
 	}
 	
@@ -203,8 +206,9 @@ public class MapClient {
 	
 	public static void main(String[] args) {
 		MapClient client = new MapClient();
-		//client.streamFromDump("../Dump20190225.sql");
-		client.test();
+		client.streamFromDump("../Dump20210711b.sql");
+		// Applications/MySQLWorkbench.app/Contents/MacOS/mysqldump --defaults-file="/var/folders/vv/d6dvwfmx0cgd19qs2yw51p1m0000gn/T/tmpL_qZ_5/extraparams.cnf"  --user=obrienlabs --host=localhost --protocol=tcp --port=63045 --default-character-set=utf8 --column-statistics=0 --skip-triggers "biometric"
+		//client.test();
 	}
 }
 
