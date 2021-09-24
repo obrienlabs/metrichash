@@ -12,7 +12,7 @@ import com.metrichash.map.model.MiddleImpl;
 import com.metrichash.map.model.Top;
 import com.metrichash.map.model.TopImpl;
 
-public class LamdaStreamsWorkspace {
+public class LambdaStreamsWorkspace {
 
 	
 	private List<Top> getModel() {
@@ -87,7 +87,7 @@ public class LamdaStreamsWorkspace {
 	
 	
 	public static void main(String[] args) {
-		LamdaStreamsWorkspace client = new LamdaStreamsWorkspace();
+		LambdaStreamsWorkspace client = new LambdaStreamsWorkspace();
 		client.test();
 	}
 }
