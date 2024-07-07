@@ -157,8 +157,8 @@ public class MapClient {
 		// array inside an array inside an array
 		
 		// perform operations on multiple list streams using flatMap
-		List<String> first = Arrays.asList("5", "a", "3");
-		List<String> sec = Stream.of("1", "2").collect(Collectors.toList());		
+		List<String> first = Arrays.asList("5", "x", "3", "c");
+		List<String> sec = Stream.of("11", "42","2").collect(Collectors.toList());		
 		
 		List<String> all = first.stream()
 				.map(w -> w.toUpperCase())
@@ -171,7 +171,7 @@ public class MapClient {
 					.map(w -> w.toUpperCase())
 					.sorted()
 					.collect(Collectors.toList());
-		combined.stream().forEach(i -> System.out.print(i));
+		combined.stream().forEach(i -> System.out.print(i +","));
 		
 		System.exit(1);
 		// iterate over a fixed range of numerics
@@ -206,9 +206,9 @@ public class MapClient {
 	
 	public static void main(String[] args) {
 		MapClient client = new MapClient();
-		client.streamFromDump("../Dump20210711b.sql");
+		//client.streamFromDump("../Dump20221113.sql");//Dump20210711b.sql");
 		// Applications/MySQLWorkbench.app/Contents/MacOS/mysqldump --defaults-file="/var/folders/vv/d6dvwfmx0cgd19qs2yw51p1m0000gn/T/tmpL_qZ_5/extraparams.cnf"  --user=obrienlabs --host=localhost --protocol=tcp --port=63045 --default-character-set=utf8 --column-statistics=0 --skip-triggers "biometric"
-		//client.test();
+		client.test();
 	}
 }
 
