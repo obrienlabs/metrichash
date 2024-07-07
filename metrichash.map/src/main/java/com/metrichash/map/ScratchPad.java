@@ -1,7 +1,8 @@
 package com.metrichash.map;
 
 import java.util.Optional;
-
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
 public class ScratchPad {
 	
 	/**
@@ -10,16 +11,22 @@ public class ScratchPad {
 	 */
 	public void matrixReductionForAdding() {
 		long m1[][] = {{1,2,3},{4,5,6}};
-		long red0[][];
+		long red0[] = {7,8,9};
+		
+		//LongStream.of(red0).forEach(System.out::println);
+		//Stream.of(red0).forEach(x -> System.out.println(x));
 		
 		// initialize reduction matrix
-		for(long[] row : m1) {
+		//for(long[] row : m1) {
+		Stream.of(m1).forEach(y -> 
+			LongStream.of(y).forEach(x -> System.out.println(x)));
+		//}
+		
+		/*for(long[] row : m1) {
 			for(long col : row) {
 				System.out.println(col);
 			}
-		}
-		
-		
+		}*/		
 	}
 	
 	public void optional() {
@@ -36,7 +43,7 @@ public class ScratchPad {
 	
 	public static void main(String[] args) {
 		ScratchPad pad = new ScratchPad();
-		pad.optional();
+		//pad.optional();
 		pad.matrixReductionForAdding();
 	}
 
