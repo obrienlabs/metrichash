@@ -18,7 +18,8 @@ public class ScratchPad {
 		
 		// initialize reduction matrix
 		
-		#Stream.of(m1).flatMap(Stream::of).toArray(Long[]::new);
+		//Stream.of(m1).flatMap(Stream::of).toArray(Long[]::new);
+		System.out.println("stream using forEach - not flatmMap()");
 		Stream.of(m1).forEach(y -> LongStream.of(y).forEach(x -> System.out.println(x)));
 		
 	}
@@ -30,6 +31,7 @@ public class ScratchPad {
 		//Optional<Integer> srcOptional = Optional.of(source);
 		Optional<Integer> srcOptional = Optional.ofNullable(source);	
 
+		System.out.println("Optional");
 		srcOptional.orElse(Integer.valueOf(1));
 		srcOptional.ifPresent(e  -> System.out.println(e));	
 	}
@@ -37,7 +39,7 @@ public class ScratchPad {
 	
 	public static void main(String[] args) {
 		ScratchPad pad = new ScratchPad();
-		//pad.optional();
+		pad.optional();
 		pad.matrixReductionForAdding();
 	}
 
