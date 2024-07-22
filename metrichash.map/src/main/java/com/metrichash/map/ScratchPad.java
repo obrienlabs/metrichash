@@ -38,9 +38,9 @@ public class ScratchPad {
 		srcOptional.ifPresent(e  -> System.out.println(e));	
 	}
 
-	
-	public boolean isPalindrome(String input) {
-		boolean criteria = true;
+
+	public boolean isPalindromeViaStringBuilder(String input) {
+		boolean criteria = false;
 
 		/*
 		 * abba
@@ -50,14 +50,31 @@ public class ScratchPad {
 		 * Optimized: compare a reversed string - if not equal - not a palindrome (abaa != aaba)
 		 * Simplest: StringBuilder.reverse
 		 */
-		if(input.length() > 1) {
-			String reversed = ""; 
+		if(input != null && input.length() > 1) {
 			StringBuilder builder = new StringBuilder(input);
-			//input.chars().forEach(x -> reversed + = x + reversed);
-			// reverse
-			
-			// compare
 			criteria = input.compareTo(builder.reverse().toString()) == 0; 
+		}
+		return criteria;
+	}
+
+	public boolean isPalindrome(String input) {
+		boolean criteria = false;
+
+		/*
+		 * abba
+		 * Algorithm:
+		 * convert string to IntStream
+		 * Brute force: iterate from both sides - once a match is not found - stop:false
+		 * Optimized: compare a reversed string - if not equal - not a palindrome (abaa != aaba)
+		 * Simplest: StringBuilder.reverse
+		 */
+		if(null != input && input.length() > 1) {
+			StringBuilder reversed = new StringBuilder(); 
+			// reverse
+			input.chars().forEach(x -> reversed.insert(0,(char) x));
+			// compare
+			System.out.println(input + " : " + reversed.toString());
+			criteria = input.compareTo(reversed.toString()) == 0; 
 		}
 
 		String result = criteria ? "true" : "false";
@@ -66,12 +83,11 @@ public class ScratchPad {
 
 	}
 
-	
-
-	
 	public static void main(String[] args) {
 		ScratchPad pad = new ScratchPad();
-		pad.isPalindrome("abcddcba");
+		System.out.println(pad.isPalindromeViaStringBuilder("abcddcba") ? "True" : "False");
+		System.out.println(pad.isPalindrome("abcddddcba") ? "True" : "False");
+		System.out.println(pad.isPalindrome("abcddddcbdddda") ? "True" : "False");
 
 		//pad.optional();
 		//pad.matrixReductionForAdding();
