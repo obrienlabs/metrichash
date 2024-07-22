@@ -17,16 +17,10 @@ public class ScratchPad {
 		//Stream.of(red0).forEach(x -> System.out.println(x));
 		
 		// initialize reduction matrix
-		//for(long[] row : m1) {
-		Stream.of(m1).forEach(y -> 
-			LongStream.of(y).forEach(x -> System.out.println(x)));
-		//}
 		
-		/*for(long[] row : m1) {
-			for(long col : row) {
-				System.out.println(col);
-			}
-		}*/		
+		#Stream.of(m1).flatMap(Stream::of).toArray(Long[]::new);
+		Stream.of(m1).forEach(y -> LongStream.of(y).forEach(x -> System.out.println(x)));
+		
 	}
 	
 	public void optional() {
