@@ -20,7 +20,8 @@ public class ScratchPad {
 		
 		//Stream.of(m1).flatMap(Stream::of).toArray(Long[]::new);
 		System.out.println("stream using forEach - not flatmMap()");
-		Stream.of(m1).forEach(y -> LongStream.of(y).forEach(x -> System.out.println(x)));
+
+		//Stream.of(m1).forEach(y -> LongStream.of(y).forEach(x -> System.out.println(x)));
 		
 	}
 	
@@ -29,6 +30,7 @@ public class ScratchPad {
 		Integer target = null;
 		
 		//Optional<Integer> srcOptional = Optional.of(source);
+		// in case the source is null
 		Optional<Integer> srcOptional = Optional.ofNullable(source);	
 
 		System.out.println("Optional");
@@ -37,10 +39,42 @@ public class ScratchPad {
 	}
 
 	
+	public boolean isPalindrome(String input) {
+		boolean criteria = true;
+
+		/*
+		 * abba
+		 * Algorithm:
+		 * convert string to IntStream
+		 * Brute force: iterate from both sides - once a match is not found - stop:false
+		 * Optimized: compare a reversed string - if not equal - not a palindrome (abaa != aaba)
+		 * Simplest: StringBuilder.reverse
+		 */
+		if(input.length() > 1) {
+			String reversed = ""; 
+			StringBuilder builder = new StringBuilder(input);
+			//input.chars().forEach(x -> reversed + = x + reversed);
+			// reverse
+			
+			// compare
+			criteria = input.compareTo(builder.reverse().toString()) == 0; 
+		}
+
+		String result = criteria ? "true" : "false";
+		System.out.println("Result: " + result);
+		return criteria;
+
+	}
+
+	
+
+	
 	public static void main(String[] args) {
 		ScratchPad pad = new ScratchPad();
-		pad.optional();
-		pad.matrixReductionForAdding();
+		pad.isPalindrome("abcddcba");
+
+		//pad.optional();
+		//pad.matrixReductionForAdding();
 	}
 
 }
