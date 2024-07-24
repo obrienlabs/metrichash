@@ -1,6 +1,7 @@
 package com.metrichash.map;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -151,6 +152,11 @@ public class MapClient {
 		Long val = null;
 		testNull(val);
 		testNull(1L);
+		
+		// max number
+		Integer bigInt = ints.stream().sorted().reduce(Integer.valueOf(0), Integer::max);
+		System.out.println("Max: " + bigInt);
+		
 		
 		
 		
