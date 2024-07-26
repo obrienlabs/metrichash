@@ -39,6 +39,12 @@ public class ScratchPad {
 	}
 
 
+	/**
+	 * The simplest way to determin palindrome state is to compare the reversed strings using the 
+	 * built in reverse() in StringBuilder without using lambda streams
+	 * @param input
+	 * @return
+	 */
 	public boolean isPalindromeViaStringBuilder(String input) {
 		boolean criteria = false;
 
@@ -57,6 +63,11 @@ public class ScratchPad {
 		return criteria;
 	}
 
+	/**
+	 * This more complicated method uses lambda streams to check the reversed string comparison
+	 * @param input
+	 * @return
+	 */
 	public boolean isPalindrome(String input) {
 		boolean criteria = false;
 
